@@ -1,0 +1,30 @@
+class Solution {
+
+    public String encode(List<String> strs) {
+        String res = "";
+        for(String str: strs){
+            res += (str + "#"+ str.length());
+        }
+        return res;
+    }
+    //Hello#5World#5
+    public List<String> decode(String str) {
+        List<String> result = new ArrayList();
+        int i = str.length()-1;
+        while(i>=0){
+            String num = "";
+            while(str.charAt(i)!='#'){
+                num =str.charAt(i)+num;
+                i--;
+            }
+            Integer parsedNum = Integer.parseInt(num);
+            int index = i-parsedNum;
+            String temp = str.substring(index,i);
+            result.add(0,temp);
+            i = index;
+            System.out.println();
+            i--;
+        }
+        return result;
+    }   
+}
